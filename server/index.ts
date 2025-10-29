@@ -4,7 +4,8 @@ import createApp from "./app";
 
 dotenv.config();
 
-const MONGO = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/bookit";
+// Accept either MONGO_URI or MONGODB_URI for compatibility with different envs
+const MONGO = process.env.MONGO_URI || process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/bookit";
 const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 
 // start the server locally (used for development)
@@ -16,7 +17,9 @@ async function main() {
     console.warn("Mongo connection failed - backend will still start but DB operations may fail.", err);
   }
 
-  const app = createApp;
+  // `server/app.ts` exports a default which may be either an app instance or the
+  // factory function. Make this robust so the dev server works regardless.
+  const app = typeof createApp === "function" ? (createApp as any)() : createApp;
 
   // start server and attach error handler (handle EADDRINUSE)
   const server = app.listen(PORT, () => {

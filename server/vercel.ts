@@ -5,7 +5,8 @@ import createApp from "./app";
 
 dotenv.config();
 
-const MONGO = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/bookit";
+// Accept either MONGO_URI (preferred) or MONGODB_URI (from older .env) for flexibility
+const MONGO = process.env.MONGO_URI || process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/bookit";
 
 // connect to MongoDB once per lambda cold-start if possible
 let isConnected = false;
