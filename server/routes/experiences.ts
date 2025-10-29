@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Experience, Slot } from "../models";
+import { Experience, Slot } from "../models/index.js";
 
 const router = Router();
 

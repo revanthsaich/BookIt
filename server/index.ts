@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import createApp from "./app";
+// Import the app using an explicit JS extension so the built output resolves
+// correctly under Node ESM when deployed.
+import createApp from "./app.js";
 
 dotenv.config();
 

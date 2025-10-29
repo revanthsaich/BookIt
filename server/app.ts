@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
-import apiRouter from "./api";
-import { requestLogger } from "./middleware/logger";
-import { errorHandler } from "./middleware/errorHandler";
+// Import the router using an explicit file extension so ESM resolution in
+// the deployed environment (Vercel) resolves to the built `index.js` file
+// instead of attempting a directory import which Node ESM rejects.
+import apiRouter from "./routes/apiRouter.js";
+import { requestLogger } from "./middleware/logger.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
 export function createApp() {
   const app = express();

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Promo } from "../models";
+import { Promo } from "../models/index.js";
 
 const router = Router();
 
