@@ -20,10 +20,13 @@ async function ensureDb() {
   }
 }
 
+// `createApp` (default export from ./app) is already an Express app instance
+// (created at module load). Wrap it once with serverless instead of creating
+// a new wrapper on every incoming request.
 const app = createApp;
+const srv = serverless(app as any);
 
 export default async function handler(req: any, res: any) {
   await ensureDb();
-  const srv = serverless(app);
   return srv(req, res);
 }

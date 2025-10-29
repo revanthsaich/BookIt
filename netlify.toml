@@ -1,7 +1,7 @@
 [build]
-  base = "client"
-  command = "pnpm install && pnpm run build"
-  publish = "client/dist"
+  base = ""
+  command = "npm install && npm run build"
+  publish = "dist"
 
 [context.production.environment]
   # Set this in Netlify UI to the deployed backend URL
@@ -9,4 +9,4 @@
 
 [dev]
   # optional: run the Netlify dev with the client
-  command = "pnpm --filter ./client dev"
+  command = pnpm --filter ./client dev"
