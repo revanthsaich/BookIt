@@ -195,6 +195,35 @@ export default function Checkout() {
               />
             </div>
 
+            {/* Selected items list */}
+            {itemsDetails.length > 0 && (
+              <div className="mt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Your selections</h3>
+                <div className="space-y-3">
+                  {itemsDetails.map((row) => (
+                    <div key={`${row.item.experienceId}-${row.item.slotId}`} className="flex items-center justify-between bg-white border border-gray-100 rounded-md p-3">
+                      <div className="flex items-start gap-3">
+                        <div className="text-sm">
+                          <div className="font-medium text-foreground">{row.experience?.title || row.item.title || 'Experience'}</div>
+                          <div className="text-xs text-muted-foreground">{row.slot ? new Date(row.slot.date).toLocaleDateString() : ''} {row.slot ? `· ${row.slot.time}` : ''}</div>
+                          <div className="text-xs text-gray-500">₹{(row.item.pricePerPerson ?? row.experience?.pricePerPerson ?? 0).toFixed(2)}</div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
+                          <button onClick={() => handleQty(row.item.experienceId, row.item.slotId, (row.item.quantity ?? 1) - 1)} className="border rounded px-2 py-0.5 text-sm">−</button>
+                          <span className="text-sm">{row.item.quantity ?? 1}</span>
+                          <button onClick={() => handleQty(row.item.experienceId, row.item.slotId, (row.item.quantity ?? 1) + 1)} className="border rounded px-2 py-0.5 text-sm">+</button>
+                        </div>
+                        <button onClick={() => handleRemove(row.item.experienceId, row.item.slotId)} className="text-xs text-red-500">Remove</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Promo code */}
             <div className="flex gap-2">
               <input
