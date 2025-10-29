@@ -19,7 +19,7 @@ export default function Layout({ children }: LayoutProps) {
             {/* Left: Logo */}
             <Link to="/" className="flex items-center gap-3" aria-label="Home">
               <img
-                src="/logo.svg"
+                src="https://pouch.jumpshare.com/preview/6ATGz8BQY0HNMvCLRTw-BpJjig-3LTqIWcoC8ggsLa_TJMIGrIZr9YcfcLt1a39F7XRZvyIrVHxFxlSoRHN_cL3HdFty3xkJHklMIK1J3-o"
                 alt="Highway Delite logo"
                 className="h-10 w-auto md:h-16 md:w-auto rounded-md object-contain"
               />

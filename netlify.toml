@@ -1,0 +1,13 @@
+[build]
+  # Run the build inside the client folder and publish the Vite output
+  base    = "client"
+  publish = "client/dist/spa"
+  command = "npm ci && npm run build"
+
+[dev]
+  # Local Netlify CLI dev settings (optional)
+  command = "cd client && npm run dev"
+
+[build.environment]
+  # Ensure the frontend can call your backend (set this in Netlify UI too)
+  # VITE_API_BASE = "https://<your-vercel-domain>/api"
