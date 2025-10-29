@@ -1,4 +1,6 @@
-export const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:3000";
+const RAW_API_BASE = "https://bookit-ryk3.onrender.com";
+// Normalize: strip trailing slash so joins like `${API_BASE}/api/...` don't produce `//`
+export const API_BASE = RAW_API_BASE.replace(/\/+$/, "");
 
 export async function apiFetch(path: string, init?: RequestInit) {
   const url = path.startsWith("http") ? path : `${API_BASE}${path.startsWith("/") ? "" : "/"}${path}`;
