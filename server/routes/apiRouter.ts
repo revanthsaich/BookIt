@@ -1,12 +1,6 @@
+// apiRouter.ts was an orchestration file used during prior deployment flows.
+// The app now mounts route modules directly; this file is retained as a
+// harmless shim to avoid accidental imports elsewhere.
 import { Router } from "express";
-import experiences from "../routes/experiences.js";
-import bookings from "../routes/bookings.js";
-import promo from "../routes/promo.js";
-
 const router = Router();
-
-router.use("/experiences", experiences);
-router.use("/bookings", bookings);
-router.use("/promo", promo);
-
 export default router;
