@@ -17,9 +17,18 @@ async function main() {
     console.warn("Mongo connection failed - backend will still start but DB operations may fail.", err);
   }
 
-  // `server/app.ts` exports a default which may be either an app instance or the
-  // factory function. Make this robust so the dev server works regardless.
-  const app = typeof createApp === "function" ? (createApp as any)() : createApp;
+  // `server/app.ts` exports a default which may be either an app instance or a
+  // factory function. An Express app is callable (typeof === 'function') so we
+  // need a stronger check: prefer an exported object that already exposes
+  // `.listen`/`.use` (an app instance). If not present, call it as a factory.
+  let app: any;
+  if (createApp && typeof (createApp as any).listen === "function") {
+    app = createApp;
+  } else if (typeof createApp === "function") {
+    app = (createApp as any)();
+  } else {
+    throw new Error("Invalid export from ./app — expected an Express app or a factory");
+  }
 
   // start server and attach error handler (handle EADDRINUSE)
   const server = app.listen(PORT, () => {

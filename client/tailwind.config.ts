@@ -2,7 +2,17 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./client/**/*.{ts,tsx}"],
+  // Scan all files in the client root (index.html and any TS/TSX/JS/JSX/HTML files)
+  content: [
+  './index.html',
+  './components/**/*.{js,jsx,ts,tsx}',
+  './hooks/**/*.{js,jsx,ts,tsx}',
+  './lib/**/*.{js,jsx,ts,tsx}',
+  './pages/**/*.{js,jsx,ts,tsx}',
+  './public/**/*.{html,js}'
+],
+
+
   prefix: "",
   theme: {
     container: {

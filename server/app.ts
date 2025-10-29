@@ -16,8 +16,20 @@ export function createApp() {
   // existing dev URLs continue to work.
   const isVercel = Boolean(process.env.VERCEL) || Boolean(process.env.VERCEL_ENV);
   const basePath = isVercel ? "/" : "/api";
+  // debug: ensure the imported router is valid
+  // (some module resolution mistakes can lead to `undefined` or an unexpected shape)
+  // We'll log a small summary which helps diagnose runtime issues.
+  // Remove these logs once debugging is complete.
+  // eslint-disable-next-line no-console
+  console.log('DEBUG apiRouter type:', typeof apiRouter, 'hasHandle:', !!(apiRouter && (apiRouter as any).handle));
 
-  app.use(basePath, apiRouter);
+  try {
+    app.use(basePath, apiRouter);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to mount apiRouter:', err);
+    throw err;
+  }
 
   app.get(`${basePath}health`, (_req, res) => res.json({ ok: true }));
 
