@@ -19,10 +19,10 @@ export default function Layout({ children }: LayoutProps) {
             {/* Left: Logo */}
             <Link to="/" className="flex items-center gap-3" aria-label="Home">
               <img
-      src="/logo.svg"
-      alt="Highway Delite logo"
-      className="h-10 w-auto md:h-16 md:w-auto rounded-md object-contain"
-    />
+                src="/logo.svg"
+                alt="Highway Delite logo"
+                className="h-10 w-auto md:h-16 md:w-auto rounded-md object-contain"
+              />
             </Link>
             {/* Center: Search bar + Search button + Cart */}
             <div className="flex items-center gap-3 flex-1 md:flex-none md:max-w-lg md:ml-10 justify-end">
