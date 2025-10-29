@@ -13,7 +13,10 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: "dist/spa",
+    // place the build output inside the client folder so Netlify can publish it
+    outDir: "client/dist/spa",
+    // copy static files from client/public into the build root
+    publicDir: "client/public",
   },
   plugins: [react()],
   resolve: {
