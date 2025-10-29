@@ -1,0 +1,222 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * BookIt Design System Colors
+   * Colors are expressed as HSL values for Tailwind CSS integration.
+  */
+  :root {
+    --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+
+    --primary: 214 88% 47%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Brand yellow used for CTA buttons in the reference design */
+  --brand-yellow: 42 95% 51%; /* warm yellow */
+  --brand-yellow-foreground: 0 0% 12%;
+
+    --brand-yellow: 42 95% 51%;
+    --brand-yellow-foreground: 0 0% 12%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 214 88% 47%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 214 88% 47%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 214 88% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 214 88% 47%;
+
+    --success: 132 53% 50%;
+    --warning: 45 93% 47%;
+    --danger: 0 84% 60%;
+
+    --gray-50: 0 0% 98%;
+    --gray-100: 0 0% 96%;
+    --gray-200: 0 0% 90%;
+    --gray-300: 0 0% 85%;
+    --gray-400: 0 0% 70%;
+    --gray-500: 0 0% 60%;
+    --gray-600: 0 0% 40%;
+    --gray-700: 0 0% 25%;
+    --gray-800: 0 0% 15%;
+    --gray-900: 0 0% 5%;
+
+    --blue-50: 214 100% 97%;
+    --blue-100: 214 100% 92%;
+    --blue-500: 214 88% 47%;
+    --blue-600: 215 96% 40%;
+    --blue-700: 216 98% 33%;
+  }
+
+  .dark {
+    --background: 220 13% 12%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 13% 18%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 13% 18%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 214 88% 52%;
+    --primary-foreground: 220 13% 12%;
+
+    --secondary: 220 13% 25%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 220 13% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 214 88% 52%;
+    --accent-foreground: 220 13% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 25%;
+    --input: 220 13% 25%;
+    --ring: 214 88% 52%;
+
+    --sidebar-background: 220 13% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 214 88% 52%;
+    --sidebar-primary-foreground: 220 13% 12%;
+    --sidebar-accent: 220 13% 25%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 13% 25%;
+    --sidebar-ring: 214 88% 52%;
+  }
+}
+
+/* Component-level overrides to better match the provided visual reference */
+@layer components {
+  /* page background a very light gray */
+  body {
+    background-color: hsl(var(--gray-50));
+  }
+
+  /* Header: light background and subtle shadow like the screenshot */
+  header[class*="border-b"] {
+    background-color: hsl(var(--gray-50));
+    box-shadow: 0 2px 8px rgba(16,24,40,0.04);
+    border-bottom: 0;
+  }
+
+  /* Card adjustments: image on top, pale content band, rounded corners and soft shadow */
+  .group > div.bg-white.rounded-lg {
+    background: transparent; /* allow the inner band to show */
+    box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Make the image area retain rounded corners at top */
+  .group > div.bg-white.rounded-lg .relative.overflow-hidden {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* Card content: pale gray band like the reference */
+  .group > div.bg-white.rounded-lg .p-5 {
+    background-color: hsl(var(--gray-100));
+    padding: 1.25rem; /* match p-5 spacing */
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  /* Price and CTA layout on card footer */
+  .group > div.bg-white.rounded-lg .border-t {
+    border-color: hsl(var(--gray-200));
+    padding-top: 0.75rem;
+  }
+
+  /* Primary CTA: yellow pill as in reference */
+  .bg-primary {
+    background-color: hsl(var(--brand-yellow));
+    color: hsl(var(--brand-yellow-foreground));
+  }
+  .bg-primary:hover {
+    filter: brightness(0.98);
+  }
+
+  /* Small yellow view-details button style */
+  .btn-cta {
+    background-color: hsl(var(--brand-yellow));
+    color: hsl(var(--brand-yellow-foreground));
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05) inset;
+  }
+
+  /* Make the star rating badge lighter and compact */
+  .group > div.bg-white.rounded-lg .absolute.top-3.right-3 {
+    background: white;
+    padding: 0.35rem 0.6rem;
+    border-radius: 9999px;
+    box-shadow: 0 2px 6px rgba(16,24,40,0.06);
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: var(--font-inter);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
