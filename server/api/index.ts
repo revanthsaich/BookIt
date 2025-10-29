@@ -1,3 +1,4 @@
+import handler from "../vercel";
 import { Router } from "express";
 import experiences from "../routes/experiences";
 import bookings from "../routes/bookings";
@@ -9,4 +10,10 @@ router.use("/experiences", experiences);
 router.use("/bookings", bookings);
 router.use("/promo", promo);
 
-export default router;
+// Vercel will set VERCEL or VERCEL_ENV — when deployed we must export the
+// serverless handler as the default export. Locally we keep exporting the
+// Express router so `server/index.ts` can mount it.
+const isVercel = Boolean(process.env.VERCEL) || Boolean(process.env.VERCEL_ENV);
+const exported: any = isVercel ? handler : router;
+
+export default exported;
