@@ -300,7 +300,7 @@ export default function ExperienceDetails() {
             <button
               onClick={handleAddToCart}
               disabled={!selectedSlot}
-              className="w-full bg-gray-200 text-foreground rounded-md py-2.5 font-medium disabled:opacity-60"
+              className="w-full bg-yellow-400 text-black rounded-md py-2.5 font-medium disabled:opacity-60 disabled:bg-gray-200"
             >
               Confirm
             </button>
